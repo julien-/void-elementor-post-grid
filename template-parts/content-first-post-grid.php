@@ -7,6 +7,8 @@
  * @package void
  */
 global $count,$col_no,$col_width,$post_count;
+
+
 ?>
 	<?php 
 		if( $count == 1){
@@ -53,9 +55,10 @@ global $count,$col_no,$col_width,$post_count;
 			</div><!--.post-info-->			
 		</header><!-- .entry-header -->
 	</div><!--.col-md-?-->
+
 	<?php 
 	
-	
+	$col_width = 6; $col_no = 2; 
 		$last_post = false;
 		if( !empty($post_count) ){
 			if(  $post_count == $count - 1 ){

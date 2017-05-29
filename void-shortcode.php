@@ -20,9 +20,9 @@ function voidgrid_sc_post_grid( $atts ) {
  
     ), $atts ));
 
-    global $voidgrid_i;
-    global $void_option, $no_option, $allowedposttags,$col_no,$count,$col_width;
-
+   
+    global $col_no,$count,$col_width;
+  
   $count = 0;         
   if ($posts_per_row==1)  { $col_width = 12; $col_no = 1; }
   else if ($posts_per_row==2){ $col_width = 6; $col_no = 2; }

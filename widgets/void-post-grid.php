@@ -180,6 +180,199 @@ protected function _register_controls() {
         );
 
 		$this->end_controls_section();
+
+
+
+
+        $this->start_controls_section(
+            'section_style_grid',
+            [
+                'label' => esc_html__( 'Style', 'voidgrid' ),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'title_text_transform',
+            [
+                'label' => esc_html__( 'Title Text Transform', 'voidgrid' ),
+                'type' => Controls_Manager::SELECT,
+                'default' => '',
+                'options' => [
+                    '' => esc_html__( 'None', 'voidgrid' ),
+                    'uppercase' => esc_html__( 'UPPERCASE', 'voidgrid' ),
+                    'lowercase' => esc_html__( 'lowercase', 'voidgrid' ),
+                    'capitalize' => esc_html__( 'Capitalize', 'voidgrid' ),
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .entry-title' => 'text-transform: {{VALUE}};',   //the selector used above in add_control
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'title_font_size',
+            [
+                'label' => esc_html__( 'Title Size', 'voidgrid' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .entry-title' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'title_color',
+            [
+                'label' => esc_html__( 'Title Color', 'voidgrid' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .entry-title a' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'title_color_hover',
+            [
+                'label' => esc_html__( 'Title Hover Color', 'voidgrid' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .entry-title a:hover' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'meta_color',
+            [
+                'label' => esc_html__( 'Meta Color', 'voidgrid' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .entry-meta a' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'meta_hover_color',
+            [
+                'label' => esc_html__( 'Meta Hover Color', 'voidgrid' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .entry-meta a:hover' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'meta_color_i',
+            [
+                'label' => esc_html__( 'Meta Icon Color', 'voidgrid' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .entry-meta' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'excerpt_text_transform',
+            [
+                'label' => esc_html__( 'Excerpt Transform', 'voidgrid' ),
+                'type' => Controls_Manager::SELECT,
+                'default' => '',
+                'options' => [
+                    '' => esc_html__( 'None', 'voidgrid' ),
+                    'uppercase' => esc_html__( 'UPPERCASE', 'voidgrid' ),
+                    'lowercase' => esc_html__( 'lowercase', 'voidgrid' ),
+                    'capitalize' => esc_html__( 'Capitalize', 'voidgrid' ),
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .blog-excerpt p' => 'text-transform: {{VALUE}};',   //the selector used above in add_control
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'excerpt_font_size',
+            [
+                'label' => esc_html__( 'Excerpt Size', 'voidgrid' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .blog-excerpt p' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'exceprt_color',
+            [
+                'label' => esc_html__( 'Excerpt Color', 'voidgrid' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .blog-excerpt p' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+
+        $this->add_responsive_control(
+            'te_align',
+            [
+                'label' => __( 'Alignment', 'voidgrid' ),
+                'type' => Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => __( 'Left', 'voidgrid' ),
+                        'icon' => 'fa fa-align-left',
+                    ],
+                    'center' => [
+                        'title' => __( 'Center', 'voidgrid' ),
+                        'icon' => 'fa fa-align-center',
+                    ],
+                    'right' => [
+                        'title' => __( 'Right', 'voidgrid' ),
+                        'icon' => 'fa fa-align-right',
+                    ],
+                    'justify' => [
+                        'title' => __( 'Justified', 'voidgrid' ),
+                        'icon' => 'fa fa-align-justify',
+                    ],
+                ],
+                'default' => '',
+                'selectors' => [
+                    '{{WRAPPER}} .blog-excerpt p' => 'text-align: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
 	}
 
 
