@@ -64,11 +64,7 @@ global $count,$col_no,$col_width,$post_count;
 			if(  $post_count == $count - 1 ){
 				$last_post = true;				
 			}
-		}
-		elseif( $wp_query->current_post +1 == $wp_query->post_count ){
-			$last_post = true;
-			
-		}
+		}		
 	?>
 		<?php	if( $count%$col_no == 0 || $last_post ) : ?>
 			</div><div class="row">
