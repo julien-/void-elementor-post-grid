@@ -1,0 +1,163 @@
+/* blog CSS */
+.void-grid{
+	word-break: break-word;
+	.entry-header{
+		text-align: center;
+		margin-bottom: 30px;
+		position: relative;
+		img{
+			margin: auto auto; 
+		}	
+	}
+	.entry-title{
+		display: inline;
+	}
+	.post-img{
+		margin-bottom: 30px;
+	}
+	.entry-content{
+		margin-bottom: 30px;
+	}
+		
+	.entry-meta{
+		margin-bottom: 5px;
+	}
+	.blog-excerpt{
+		margin-bottom: 40px;
+	}
+
+	/* list style blog */
+	.list{
+		@include headings{
+			margin:0 ;
+		}
+		.entry-header{
+			@include ver-line();
+			overflow: hidden;
+			margin-top: 30px;
+			padding-bottom: 30px;
+			.post-info{
+				overflow: hidden;
+			}		
+		}
+		.post-navigation{
+			border-top: none;
+		}
+
+	}
+
+	/* 1st full post list style blog */
+	.first-post-list{
+		@include headings{
+			margin:0 ;
+		}
+		.entry-header{
+			@include ver-line();
+			overflow: hidden;
+			margin-top: 30px;
+			padding-bottom: 30px;
+			&:first-child{			
+				.post-img{
+					float: none;
+				}
+				.post-info{
+					text-align: center;
+					overflow: hidden;
+				}
+			}
+		}
+		.post-navigation{
+			border-top: none;
+		}
+	}
+
+	/* grid style blog */
+	.grid{
+		.entry-header{
+			margin-top: 30px;
+		}
+	}
+	/* first post grid */
+	.first-post-grid{
+		.entry-header{
+			margin-top: 30px;
+		}	
+	}
+	/* post image */
+	.post-img{
+		position:relative;
+	}
+	.top-left{
+		.post-img{
+			img{
+				border-top-left-radius: 75px;
+				border-bottom-right-radius: 75px;	
+			}
+		}
+	}
+	.top-right{
+		.post-img{
+			img{
+				border-top-right-radius: 75px;
+				border-bottom-left-radius: 75px;	
+			}
+		}
+	}
+
+	/* minimal grid blog */
+	.minimal{
+		.tags-links{
+			display: none !important;
+		}
+		.comments-link{
+			display: none !important;
+		}
+		.cat-links{
+			margin-top: 15px;
+			//text-transform: uppercase;		
+			&::before{
+				display: none !important;
+			}
+			a{
+				color: #7cb0b9;
+				font-weight: bold;
+				font-size: 18px;
+			}
+		}
+		.entry-title{
+			margin-top: 0;
+		}
+		.moretag{
+			display: none;
+		}
+		.entry-header{
+			margin-top: 30px;
+			border:1px solid $QuarTernaryColor;
+			margin-bottom: 40px;
+		}
+		.blog-excerpt{
+			margin-top: 15px;
+		}
+	}
+	.cat-links::before{
+		@include icon("\f03a");	
+	}
+	.tags-links::before{
+		@include icon("\f02c");	
+	}
+	.updated-on::before{
+		@include icon("\f1d8");
+	}
+	.posted-on::before{
+		@include icon("\f044");
+	}
+	.comments-link::before{
+		@include icon("\f086");
+	}
+	.author::before{
+		@include icon("\f007");
+	}
+	.cat-links, .tags-links, .updated-on, .posted-on, .comments-link, .author{
+		display: inline-block;
+	}
+}

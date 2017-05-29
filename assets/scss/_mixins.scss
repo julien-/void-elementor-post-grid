@@ -1,0 +1,21 @@
+
+@mixin headings($from: 1, $to: 6){
+    @for $i from $from through $to{
+      h#{$i}{
+        @content;
+      }
+    }
+}
+
+
+@mixin ver-line($pixel : 1px, $style : solid, $color : $QuarTernaryColor, $pos : bottom){
+	border-#{$pos}: $pixel $style $color;
+}
+
+
+@mixin icon( $content, $display: inline-block, $font-family: FontAwesome ){
+	content: $content;
+	display: $display;
+	font-family: $font-family;
+	padding: 10px;	
+}

@@ -1,0 +1,28 @@
+/* media quereis */
+
+@media only screen and ( min-width:768px ){
+
+	/* list style blog */
+	.list{	
+		
+		.post-img{
+			float: left;
+			margin-right: 20px;
+		}
+		.post-info{
+			text-align:left;		
+		}	
+	}
+	/* 1st post list blog */
+	.first-post-list{	
+		
+		.post-img{
+			float: left;
+			margin-right: 20px;
+		}
+		.post-info{
+			text-align:left;		
+		}	
+	}
+
+}
