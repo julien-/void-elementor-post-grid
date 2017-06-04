@@ -16,7 +16,7 @@ You are now able to show not only your deafult posts by wordpress but also anyth
 
 For more details :[VOID Elementor Post Grid Demo](http://voidthemes.com/void-elementor-post-grid-plugin/).
 For our other works visit : [VOID Themes](http://voidthemes.com).
-Github : [Github](https://github.com/soyket/void-elementor-post-grid).
+[Github](https://github.com/soyket/void-elementor-post-grid).
 
 [youtube http://www.youtube.com/watch?v=VUJbNQQ6S9s]
 
@@ -34,13 +34,11 @@ Controls:
 1. Filter with general post or Custom post type
 2. Filter Custom taxonomy (all category/tags or your desired custom made category, i.e: taxanomy=portfolio-category )
 3. Filter Custom terms (i.e: which category)
-1. Number of posts
-2. Category Filter
-3. Post Offset to skip first (x) posts
-4. Order by
-5. 3 image styles for featured images to show up
+4. Number of posts
+5. Post Offset to skip first (x) posts
 6. Order by
-7. Sticky control
+7. 3 image styles for featured images to show up
+8. Sticky control
 
 Note: This plugin is an addon of Elementor Page Builder (https://wordpress.org/plugins/elementor/) and will only work with Elementor Page Builder installed. And your elementor should be up to date to latest version
 
