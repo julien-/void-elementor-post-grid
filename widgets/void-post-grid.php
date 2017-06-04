@@ -6,7 +6,6 @@ use Elementor\Controls_Manager;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Utils;
 
-
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
@@ -24,7 +23,7 @@ class Void_Post_Grid extends Widget_Base {   //this name is added to plugin.php 
 	}
 
 	public function get_icon() {
-		return 'fa fa-suitcase';    
+		return 'eicon-posts-grid';    
 	}
 
 	public function get_categories() {
@@ -61,7 +60,32 @@ protected function _register_controls() {
 				'classes' => 'elementor-descriptor',
 			]
 		);
-
+        $this->add_control(
+            'post_type',
+            [
+                'label' => esc_html__( 'Select post type', 'voidgrid' ),
+                'type' => Controls_Manager::SELECT2,
+                'options' => void_grid_post_type(),                                
+            ]
+        );
+        $this->add_control(
+            'taxonomy_type',
+            [
+                'label' => __( 'Select Taxonomy', 'voidgrid' ),
+                'type' => Controls_Manager::SELECT2,
+                'options' => '',                               
+            ]
+        );
+        
+        $this->add_control(
+            'terms',
+            [
+                'label' => __( 'Select Terms(usually categories/tags)', 'voidgrid' ),
+                'type' => Controls_Manager::SELECT2,
+                'options' => '',              
+                'multiple' => true,
+            ]
+        );
 	   $this->add_control(
             'display_type',
             [
@@ -105,20 +129,6 @@ protected function _register_controls() {
 				'default' => 1,
 			]
 		);
-		
-	 	
-		$this->add_control(
-			'category',
-			[
-				'label' => __( 'Select Category', 'voidgrid' ),
-				'type' => Controls_Manager::SELECT2,
-				'options' => void_grid_get_category_post(),
-				'multiple' => true,
-			]
-		);
-
-
-
         $this->add_control(
             'offset',
             [
@@ -379,15 +389,47 @@ protected function _register_controls() {
 	protected function render() {				//to show on the fontend 
 		$settings = $this->get_settings();
 
-		if(!empty($settings['category'])){
-				$category = implode (", ", $settings['category']);
-		}else{$category='';}
+        if( !empty($settings['taxonomy_type'])){
+            $terms = get_terms( array(
+                'taxonomy' => $settings['taxonomy_type'],
+                'hide_empty' => true,
+            ));
+            foreach ( $terms as $term ){
+                $term_id[] = $term -> term_id; 
+            }
+        }
+		if(!empty($settings['terms'])){
+				$category = implode (", ", $settings['terms']);             
+		}
+        elseif( !empty($settings['taxonomy_type'])) {
+            $category=implode(", ", $term_id);
+        }
+        else{
+            $category = '';
+        }
 		echo'<div class="elementor-shortcode">';
-            echo do_shortcode('[voidgrid_sc_post_grid display_type="'.$settings['display_type'].'" posts="'.$settings['posts'].'" posts_per_row="'.$settings['posts_per_row'].'" image_style="'.$settings['image_style'].'" sticky_ignore="'.$settings['sticky_ignore'].'"  orderby="'.$settings['orderby'].'" order="'.$settings['order'].'" offset="'.$settings['offset'].'"  category="'.$category.'"]');    
+            echo do_shortcode('[voidgrid_sc_post_grid post_type="'.$settings['post_type'].'" display_type="'.$settings['display_type'].'" posts="'.$settings['posts'].'" posts_per_row="'.$settings['posts_per_row'].'" image_style="'.$settings['image_style'].'" sticky_ignore="'.$settings['sticky_ignore'].'"  orderby="'.$settings['orderby'].'" order="'.$settings['order'].'" offset="'.$settings['offset'].'"  terms="'.$category.'" taxonomy_type="'.$settings['taxonomy_type'].'" ]');    
 		echo'</div>';
 	}
 
-	protected function _content_template() {      // to be in live preview edit
-
-	}
 }
+
+
+add_action( 'wp_footer', function() {
+    if ( ! defined( 'ELEMENTOR_VERSION' ) ) {
+        return;
+    }
+   
+    // load our jquery file that sends the $.post request
+    wp_enqueue_script( "void-grid-ajax", plugins_url('assets/js/void-ajax.js', dirname(__FILE__)) , array( 'jquery', 'json2' ) );
+ 
+    // make the ajaxurl var available to the above script
+    wp_localize_script( 'void-grid-ajax', 'void_grid_ajax', array(
+                                                            'ajaxurl'          => admin_url( 'admin-ajax.php' ),
+                                                            'postTypeNonce' => wp_create_nonce( 'voidgrid-post-type-nonce' ),
+                                                            ) 
+    );
+} );
+
+
+

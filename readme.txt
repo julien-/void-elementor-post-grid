@@ -3,7 +3,7 @@ Contributors: voidthemes
 Tags: page-builder, elementor, grid-builder, list-post, post-grid
 Requires at least: 4.4
 Tested up to: 4.7.5
-Stable tag: 1.0.0
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -11,12 +11,16 @@ Adds post-grid element to Elementor page builder for generating post grid/list f
 
 == Description ==
 
-This plugin adds new element / widget to Elementor Page Builder which helps you to showcase your blog posts in in five different styles.
+This plugin adds new element / widget to Elementor Page Builder which helps you to showcase your blog posts, custom post type with custom taxonomy in five different styles.
+You are now able to show not only your deafult posts by wordpress but also anything you create as custom post type. (excluding-meta tags/values).
 
-For more details and demo check our official site http://voidthemes.com/void-post-grid-element
-For our other works visit : http://voidthemes.com
+For more details :[VOID Elementor Post Grid Demo](http://voidthemes.com/void-elementor-post-grid-plugin/).
+For our other works visit : [VOID Themes](http://voidthemes.com).
 
-Current Addon Element for Elementor:
+[youtube http://www.youtube.com/watch?v=VUJbNQQ6S9s]
+
+
+What Does This plugin give you?
 
 Post Grid Styles: 
 1. Grid Layout
@@ -26,6 +30,9 @@ Post Grid Styles:
 5. First Big post then list
 
 Controls:
+1. Filter with general post or Custom post type
+2. Filter Custom taxonomy (all category/tags or your desired custom made category, i.e: taxanomy=portfolio-category )
+3. Filter Custom terms (i.e: which category)
 1. Number of posts
 2. Category Filter
 3. Post Offset to skip first (x) posts
@@ -56,8 +63,15 @@ Our Void Elementor Post Grid adds a new section in the elementor live page build
 2. /assets/screenshot-2.jpg
 3. /assets/screenshot-3.jpg
 4. /assets/screenshot-4.jpg
+4. /assets/screenshot-5.jpg
+4. /assets/screenshot-6.jpg
+4. /assets/screenshot-7.jpg
 
 
 == Changelog ==
+= 1.2 =
+Custom post type filtering, custom taxonomy, category/tags filter
+= 1.1 =
+Fix issue with older elements
 = 1.0 =
 * Initial Launch with 5 post grid styles only 

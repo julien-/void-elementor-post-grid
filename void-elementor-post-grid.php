@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Void Elementor Post Grid Addon for Elementor Page builder
  * Description: Elementor Post Grid in 5 different style by voidthems for elementor page builder
- * Version:     1.0.1
+ * Version:     1.0.2
  * Author:      VOID THEMES
  * Plugin URI:  http://voidthemes.com/void-elementor-post-grid-plugin/
  * Author URI:  http://voidthemes.com
@@ -10,10 +10,12 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-	require( __DIR__ . '/void-shortcode.php' );   //loading the main plugin
+
+require( __DIR__ . '/void-shortcode.php' );   //loading the main plugin
 
 define( 'VOID_ELEMENTS_FILE_', __FILE__ );
 define( 'VOID_ELEMENTS_DIR', plugin_dir_path( __FILE__ ) );
+
 require VOID_ELEMENTS_DIR . 'class-gamajo-template-loader.php';
 require VOID_ELEMENTS_DIR . 'void-template-loader.php';
 require VOID_ELEMENTS_DIR . 'template-tags.php';
@@ -38,9 +40,55 @@ require VOID_ELEMENTS_DIR . 'template-tags.php';
 	require( __DIR__ . '/plugin.php' );   //loading the main plugin
 
 }
-add_action( 'plugins_loaded', 'voidgrid_load_elements' );   //notiung but checking and notice
+add_action( 'plugins_loaded', 'voidgrid_load_elements' ); 
 
 function void_grid_image_size(){
 	add_image_size( 'blog-list-post-size', 350 );
 }
 add_action('init', 'void_grid_image_size');
+
+function void_grid_ajax_process_tax_request() {
+    // first check if data is being sent and that it is the data we want   
+   
+    if( isset( $_POST['postTypeNonce'] ) ){    	
+    	$nonce = $_POST['postTypeNonce'];
+    	if ( ! wp_verify_nonce( $nonce, 'voidgrid-post-type-nonce' ) ){
+ 			wp_die( 'You are not allowed!');
+    	}
+    	$post_type = $_POST['post_type'];
+    	$taxonomoies = get_object_taxonomies( $post_type, 'names' );
+    	$taxonomy_name = array();    
+    	foreach( $taxonomoies as $taxonomy ){    		 
+    		$taxonomy_name[] = array( 'name'	=> $taxonomy ) ;	   		
+    		   		
+    	}
+    	echo json_encode($taxonomy_name);
+        wp_die(); 
+    } 
+}
+add_action('wp_ajax_void_grid_ajax_tax', 'void_grid_ajax_process_tax_request');
+
+function void_grid_ajax_process_terms_request() {
+    // first check if data is being sent and that it is the data we want
+   
+    if( isset( $_POST['postTypeNonce'] ) ){    	
+    	$nonce = $_POST['postTypeNonce'];
+    	if ( ! wp_verify_nonce( $nonce, 'voidgrid-post-type-nonce' ) ){
+ 			wp_die( 'You are not allowed!');
+    	}
+    	$taxonomy_type = $_POST['taxonomy_type'];    	  	
+    	$term_slug = array();
+		$terms = get_terms( $taxonomy_type );    		   		
+		foreach ( $terms as $term ){
+			$term_slug[] = array(
+					'id'	=> $term -> term_id,
+					'name'	=> $term -> name
+				);  			
+		}    		
+    
+    	echo json_encode($term_slug);
+        wp_die(); 
+    } 
+}
+add_action('wp_ajax_void_grid_ajax_terms', 'void_grid_ajax_process_terms_request');
+

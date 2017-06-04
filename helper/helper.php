@@ -39,23 +39,15 @@ function voidgrid_post_orderby_options(){
     return $orderby;
 }
 
-function void_grid_get_category_post(){
-
-	$categories = get_categories( array(
-    'orderby' => 'name',
-    'parent'  => 0
-	) );
 	
-	$catlist=[];
-
-
-	foreach ( $categories as $category ) {
-		(int)$catlist[$category->term_id] = $category->name;
-	}
-
-return $catlist;
-
-}	
-
+function void_grid_post_type(){
+	$args= array(
+			'public'	=> 'true',
+			'_builtin'	=> false
+		);
+	$post_types = get_post_types( $args, 'names', 'and' );
+	$post_types = array( 'post'	=> 'post' ) + $post_types;
+	return $post_types;
+}
 
 

@@ -4,12 +4,13 @@
 $col_no=$count=$col_width=$post_count='';
 
 function voidgrid_sc_post_grid( $atts ) {
-    extract( shortcode_atts( array ( 
+    extract( shortcode_atts( array (
+         'post_type'  => 'post',
+         'taxonomy_type'  => '',
+         'terms'          => '', 
          'display_type'  => '1',   
          'posts' => -1,
-         'posts_per_row' => 2,
-         'category' => '',
-         'category_name'    => '',
+         'posts_per_row' => 2,         
          'image_style'  => '1',
          'orderby'          => 'date',
          'order'            => 'DESC', 
@@ -60,33 +61,41 @@ function voidgrid_sc_post_grid( $atts ) {
     else{
       $image_style = '';
     }         
-
-  
+  if( !empty( $taxonomy_type ) ){
+    $tax_query = array(                        
+                        array(
+                                'taxonomy' => $taxonomy_type,
+                                'field'    => 'term_id',
+                                'terms'    => explode( ',', $terms ),
+                              ),
+                        );
+  }
+  else{
+    $tax_query = '';
+  }
+ 
   $templates = new Void_Template_Loader;
   ob_start(); 
 
   $grid_query= null;
-  $args = array(
-        'display_type'  => $display_type,
-       'post_type'      => 'post',
+
+
+
+    $args = array(
+       'post_type'      => $post_type,         
        'post_status'    => 'publish',
        'posts_per_page' => $posts,    
-       'cat'            => $category,
-       'image_style'    => $image_style,
-       'category_name'    => $category_name,
+       'tax_query' => $tax_query,
        'orderby'          => $orderby,
        'order'            => $order,   //ASC / DESC
        'offset'           => $offset,
        'ignore_sticky_posts' => $sticky_ignore,
-
-     //  'suppress_filters' => true       
   );
-
 
 $grid_query = new WP_Query( $args );
   global $post_count;
   $post_count = $posts;
- ?>
+?>
 
 <div class="content-area void-grid">
   <div class="site-main <?php echo esc_html( $display_type . ' '. $image_style); ?>" >       
