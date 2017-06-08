@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Void Elementor Post Grid Addon for Elementor Page builder
  * Description: Elementor Post Grid in 5 different style by voidthems for elementor page builder
- * Version:     1.0.2
+ * Version:     1.0.3
  * Author:      VOID THEMES
  * Plugin URI:  http://voidthemes.com/void-elementor-post-grid-plugin/
  * Author URI:  http://voidthemes.com
@@ -23,7 +23,7 @@ require VOID_ELEMENTS_DIR . 'template-tags.php';
 	
 	function voidgrid_load_elements() {
 	// Load localization file
-	load_plugin_textdomain( 'voidgrid' );
+	load_plugin_textdomain( 'void' );
 
 	// Notice if the Elementor is not active
 	if ( ! did_action( 'elementor/loaded' ) ) {
@@ -41,6 +41,22 @@ require VOID_ELEMENTS_DIR . 'template-tags.php';
 
 }
 add_action( 'plugins_loaded', 'voidgrid_load_elements' ); 
+
+// display custom admin notice
+function voidgrid_load_elements_notice() { ?>
+
+    <?php if (!did_action( 'elementor/loaded' )  ) : ?>
+        <div class="notice notice-warning is-dismissible">
+            <p><?php echo sprintf( __( '<a href="%s"  target="_blank" >Elementor Page Builder</a> must be installed and activated for "Void Elementor Post Grid" to work' ),  'https://wordpress.org/plugins/elementor/'); ?></p>
+        </div>
+    <?php endif; ?>
+
+<?php }
+add_action('admin_notices', 'voidgrid_load_elements_notice');
+
+
+
+
 
 function void_grid_image_size(){
 	add_image_size( 'blog-list-post-size', 350 );

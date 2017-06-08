@@ -13,9 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 // Add a custom category for panel widgets
 add_action( 'elementor/init', function() {
    \Elementor\Plugin::$instance->elements_manager->add_category( 
-   	'void-theme-elements',                 // the name of the category
+   	'void-elements',                 // the name of the category
    	[
-   		'title' => esc_html__( 'Void Post Grid', 'voidgrid' ),
+   		'title' => esc_html__( 'VOID ELEMENTS', 'void' ),
    		'icon' => 'fa fa-header', //default icon
    	],
    	1 // position

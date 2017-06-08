@@ -2,8 +2,8 @@
 Contributors: voidthemes
 Tags: page-builder, elementor, grid-builder, list-post, post-grid
 Requires at least: 4.4
-Tested up to: 4.7.5
-Stable tag: 1.0.2
+Tested up to: 4.8
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -62,9 +62,9 @@ Our Void Elementor Post Grid adds a new section in the elementor live page build
 2. /assets/screenshot-2.jpg
 3. /assets/screenshot-3.jpg
 4. /assets/screenshot-4.jpg
-4. /assets/screenshot-5.jpg
-4. /assets/screenshot-6.jpg
-4. /assets/screenshot-7.jpg
+5. /assets/screenshot-5.jpg
+6. /assets/screenshot-6.jpg
+7. /assets/screenshot-7.jpg
 
 
 == Changelog ==

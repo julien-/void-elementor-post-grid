@@ -27,7 +27,7 @@ class Void_Post_Grid extends Widget_Base {   //this name is added to plugin.php 
 	}
 
 	public function get_categories() {
-		return [ 'void-theme-elements' ];    // category of the widget
+		return [ 'void-elements' ];    // category of the widget
 	}
 
 	public function is_reload_preview_required() {
@@ -48,14 +48,14 @@ protected function _register_controls() {
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => esc_html__( 'Post Grid Setting', 'voidgrid' ),   //section name for controler view
+				'label' => esc_html__( 'Post Grid Setting', 'void' ),   //section name for controler view
 			]
 		);
 
 		$this->add_control(
 			'refer_wp_org',
 			[
-				'raw' => __( 'For more detail about following filters please refer <a href="https://codex.wordpress.org/Template_Tags/get_posts" target="_blank">here</a>', 'voidgrid' ),
+				'raw' => __( 'For more detail about following filters please refer <a href="https://codex.wordpress.org/Template_Tags/get_posts" target="_blank">here</a>', 'void' ),
 				'type' => Controls_Manager::RAW_HTML,
 				'classes' => 'elementor-descriptor',
 			]
@@ -63,7 +63,7 @@ protected function _register_controls() {
         $this->add_control(
             'post_type',
             [
-                'label' => esc_html__( 'Select post type', 'voidgrid' ),
+                'label' => esc_html__( 'Select post type', 'void' ),
                 'type' => Controls_Manager::SELECT2,
                 'options' => void_grid_post_type(),                                
             ]
@@ -71,7 +71,7 @@ protected function _register_controls() {
         $this->add_control(
             'taxonomy_type',
             [
-                'label' => __( 'Select Taxonomy', 'voidgrid' ),
+                'label' => __( 'Select Taxonomy', 'void' ),
                 'type' => Controls_Manager::SELECT2,
                 'options' => '',                               
             ]
@@ -80,7 +80,7 @@ protected function _register_controls() {
         $this->add_control(
             'terms',
             [
-                'label' => __( 'Select Terms(usually categories/tags)', 'voidgrid' ),
+                'label' => __( 'Select Terms(usually categories/tags)', 'void' ),
                 'type' => Controls_Manager::SELECT2,
                 'options' => '',              
                 'multiple' => true,
@@ -89,7 +89,7 @@ protected function _register_controls() {
 	   $this->add_control(
             'display_type',
             [
-                'label' => esc_html__( 'Choose your desired style', 'voidgrid' ),
+                'label' => esc_html__( 'Choose your desired style', 'void' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
                     '1' => 'Grid Layout', 
@@ -105,7 +105,7 @@ protected function _register_controls() {
         $this->add_control(
             'posts_per_row',
             [
-                'label' => esc_html__( 'Posts Per Row', 'voidgrid' ),
+                'label' => esc_html__( 'Posts Per Row', 'void' ),
                 'type' => Controls_Manager::SELECT,
                 'condition' => [
                     'display_type' => ['1','5'],
@@ -123,16 +123,16 @@ protected function _register_controls() {
 		$this->add_control(
 			'posts',     
 			[
-				'label' => esc_html__( 'Number of Post', 'voidgrid' ),
-				'description' => esc_html__( 'Give -1 for all post', 'voidgrid' ),
+				'label' => esc_html__( 'Number of Post', 'void' ),
+				'description' => esc_html__( 'Give -1 for all post', 'void' ),
 				'type' => Controls_Manager::NUMBER,
-				'default' => 1,
+				'default' => -1,
 			]
 		);
         $this->add_control(
             'offset',
             [
-                'label' => esc_html__( 'Post Offset', 'voidgrid' ),
+                'label' => esc_html__( 'Post Offset', 'void' ),
                 'type' => Controls_Manager::NUMBER,
                 'default' => '0'
             ]
@@ -141,7 +141,7 @@ protected function _register_controls() {
     	$this->add_control(
             'orderby',
             [
-                'label' => esc_html__( 'Order By', 'voidgrid' ),
+                'label' => esc_html__( 'Order By', 'void' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => voidgrid_post_orderby_options(),
                 'default' => 'date',
@@ -151,7 +151,7 @@ protected function _register_controls() {
         $this->add_control(
             'image_style',
             [
-                'label' => esc_html__('Choose your desired featured image style', 'voidgrid'),
+                'label' => esc_html__('Choose your desired featured image style', 'void'),
                 'type'  => Controls_Manager::SELECT2,
                 'options' => [
                     '1' => 'Standard',
@@ -164,7 +164,7 @@ protected function _register_controls() {
         $this->add_control(
             'order',
             [
-                'label' => esc_html__( 'Order', 'voidgrid' ),
+                'label' => esc_html__( 'Order', 'void' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
                     'asc' => 'Ascending',
@@ -178,7 +178,7 @@ protected function _register_controls() {
         $this->add_control(
             'sticky_ignore',
             [
-                'label' => esc_html__( 'Sticky Condition', 'voidgrid' ),
+                'label' => esc_html__( 'Sticky Condition', 'void' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
                     '1' => 'Remove Sticky',
@@ -197,7 +197,7 @@ protected function _register_controls() {
         $this->start_controls_section(
             'section_style_grid',
             [
-                'label' => esc_html__( 'Style', 'voidgrid' ),
+                'label' => esc_html__( 'Style', 'void' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -205,14 +205,14 @@ protected function _register_controls() {
         $this->add_control(
             'title_text_transform',
             [
-                'label' => esc_html__( 'Title Text Transform', 'voidgrid' ),
+                'label' => esc_html__( 'Title Text Transform', 'void' ),
                 'type' => Controls_Manager::SELECT,
                 'default' => '',
                 'options' => [
-                    '' => esc_html__( 'None', 'voidgrid' ),
-                    'uppercase' => esc_html__( 'UPPERCASE', 'voidgrid' ),
-                    'lowercase' => esc_html__( 'lowercase', 'voidgrid' ),
-                    'capitalize' => esc_html__( 'Capitalize', 'voidgrid' ),
+                    '' => esc_html__( 'None', 'void' ),
+                    'uppercase' => esc_html__( 'UPPERCASE', 'void' ),
+                    'lowercase' => esc_html__( 'lowercase', 'void' ),
+                    'capitalize' => esc_html__( 'Capitalize', 'void' ),
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .entry-title' => 'text-transform: {{VALUE}};',   //the selector used above in add_control
@@ -223,7 +223,7 @@ protected function _register_controls() {
         $this->add_responsive_control(
             'title_font_size',
             [
-                'label' => esc_html__( 'Title Size', 'voidgrid' ),
+                'label' => esc_html__( 'Title Size', 'void' ),
                 'type' => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -246,7 +246,7 @@ protected function _register_controls() {
         $this->add_responsive_control(
             'title_color',
             [
-                'label' => esc_html__( 'Title Color', 'voidgrid' ),
+                'label' => esc_html__( 'Title Color', 'void' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .entry-title a' => 'color: {{VALUE}};',
@@ -257,7 +257,7 @@ protected function _register_controls() {
         $this->add_responsive_control(
             'title_color_hover',
             [
-                'label' => esc_html__( 'Title Hover Color', 'voidgrid' ),
+                'label' => esc_html__( 'Title Hover Color', 'void' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .entry-title a:hover' => 'color: {{VALUE}};',
@@ -268,7 +268,7 @@ protected function _register_controls() {
         $this->add_responsive_control(
             'meta_color',
             [
-                'label' => esc_html__( 'Meta Color', 'voidgrid' ),
+                'label' => esc_html__( 'Meta Color', 'void' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .entry-meta a' => 'color: {{VALUE}};',
@@ -279,7 +279,7 @@ protected function _register_controls() {
         $this->add_responsive_control(
             'meta_hover_color',
             [
-                'label' => esc_html__( 'Meta Hover Color', 'voidgrid' ),
+                'label' => esc_html__( 'Meta Hover Color', 'void' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .entry-meta a:hover' => 'color: {{VALUE}};',
@@ -290,7 +290,7 @@ protected function _register_controls() {
         $this->add_responsive_control(
             'meta_color_i',
             [
-                'label' => esc_html__( 'Meta Icon Color', 'voidgrid' ),
+                'label' => esc_html__( 'Meta Icon Color', 'void' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .entry-meta' => 'color: {{VALUE}};',
@@ -301,14 +301,14 @@ protected function _register_controls() {
         $this->add_control(
             'excerpt_text_transform',
             [
-                'label' => esc_html__( 'Excerpt Transform', 'voidgrid' ),
+                'label' => esc_html__( 'Excerpt Transform', 'void' ),
                 'type' => Controls_Manager::SELECT,
                 'default' => '',
                 'options' => [
-                    '' => esc_html__( 'None', 'voidgrid' ),
-                    'uppercase' => esc_html__( 'UPPERCASE', 'voidgrid' ),
-                    'lowercase' => esc_html__( 'lowercase', 'voidgrid' ),
-                    'capitalize' => esc_html__( 'Capitalize', 'voidgrid' ),
+                    '' => esc_html__( 'None', 'void' ),
+                    'uppercase' => esc_html__( 'UPPERCASE', 'void' ),
+                    'lowercase' => esc_html__( 'lowercase', 'void' ),
+                    'capitalize' => esc_html__( 'Capitalize', 'void' ),
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .blog-excerpt p' => 'text-transform: {{VALUE}};',   //the selector used above in add_control
@@ -319,7 +319,7 @@ protected function _register_controls() {
         $this->add_responsive_control(
             'excerpt_font_size',
             [
-                'label' => esc_html__( 'Excerpt Size', 'voidgrid' ),
+                'label' => esc_html__( 'Excerpt Size', 'void' ),
                 'type' => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -342,7 +342,7 @@ protected function _register_controls() {
         $this->add_responsive_control(
             'exceprt_color',
             [
-                'label' => esc_html__( 'Excerpt Color', 'voidgrid' ),
+                'label' => esc_html__( 'Excerpt Color', 'void' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .blog-excerpt p' => 'color: {{VALUE}};',
@@ -354,23 +354,23 @@ protected function _register_controls() {
         $this->add_responsive_control(
             'te_align',
             [
-                'label' => __( 'Alignment', 'voidgrid' ),
+                'label' => __( 'Alignment', 'void' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => __( 'Left', 'voidgrid' ),
+                        'title' => __( 'Left', 'void' ),
                         'icon' => 'fa fa-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'voidgrid' ),
+                        'title' => __( 'Center', 'void' ),
                         'icon' => 'fa fa-align-center',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'voidgrid' ),
+                        'title' => __( 'Right', 'void' ),
                         'icon' => 'fa fa-align-right',
                     ],
                     'justify' => [
-                        'title' => __( 'Justified', 'voidgrid' ),
+                        'title' => __( 'Justified', 'void' ),
                         'icon' => 'fa fa-align-justify',
                     ],
                 ],
@@ -414,8 +414,11 @@ protected function _register_controls() {
 
 }
 
+$current_url=esc_url("//".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 
-add_action( 'wp_footer', function() {
+if( strpos( $current_url, 'elementor') == true ){
+    add_action( 'wp_footer', function() {
+
     if ( ! defined( 'ELEMENTOR_VERSION' ) ) {
         return;
     }
@@ -430,6 +433,7 @@ add_action( 'wp_footer', function() {
                                                             ) 
     );
 } );
+}
 
 
 
