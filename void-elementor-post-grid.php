@@ -56,8 +56,6 @@ add_action('admin_notices', 'voidgrid_load_elements_notice');
 
 
 
-
-
 function void_grid_image_size(){
 	add_image_size( 'blog-list-post-size', 350 );
 }
