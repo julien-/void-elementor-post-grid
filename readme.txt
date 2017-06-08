@@ -53,7 +53,7 @@ Note: This plugin is an addon of Elementor Page Builder (https://wordpress.org/p
 
 = Where can to find the new element added =
 
-Our Void Elementor Post Grid adds a new section in the elementor live page builder named : VOID POST GRID . There you will see the widget which you can drag and drop and config settings
+Our Void Elementor Post Grid adds a new section in the elementor live page builder named : VOID ELEMENTS. Actually here you will see all widgets developed by us even if the plugins are installed seperately. Now just drag & drop it to your page to work.
 
 
 == Screenshots ==
