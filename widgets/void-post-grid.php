@@ -80,7 +80,7 @@ protected function _register_controls() {
         $this->add_control(
             'terms',
             [
-                'label' => __( 'Select Terms(usually categories/tags)', 'void' ),
+                'label' => __( 'Select Terms (usually categories/tags) * Must Select Taxonomy First', 'void' ),
                 'type' => Controls_Manager::SELECT2,
                 'options' => '',              
                 'multiple' => true,
@@ -123,12 +123,26 @@ protected function _register_controls() {
 		$this->add_control(
 			'posts',     
 			[
-				'label' => esc_html__( 'Number of Post', 'void' ),
-				'description' => esc_html__( 'Give -1 for all post', 'void' ),
+				'label' => esc_html__( 'Post Per Page', 'void' ),
+				'description' => esc_html__( 'Give -1 for all post & No Pagination', 'void' ),
 				'type' => Controls_Manager::NUMBER,
 				'default' => -1,
 			]
 		);
+
+        $this->add_control(
+                'pagination_yes',
+                [
+                    'label' => esc_html__( 'Pagination Enabled', 'void' ),
+                    'type' => Controls_Manager::SELECT,
+                    'options' => [
+                        1 => 'Yes',
+                        2 => 'No'
+                    ],
+                    'default' => 1,
+
+                ]
+            );
         $this->add_control(
             'offset',
             [
@@ -188,7 +202,7 @@ protected function _register_controls() {
                 'default' => '1',
             ]
         );
-
+      
 		$this->end_controls_section();
 
 
@@ -408,7 +422,7 @@ protected function _register_controls() {
             $category = '';
         }
 		echo'<div class="elementor-shortcode">';
-            echo do_shortcode('[voidgrid_sc_post_grid post_type="'.$settings['post_type'].'" display_type="'.$settings['display_type'].'" posts="'.$settings['posts'].'" posts_per_row="'.$settings['posts_per_row'].'" image_style="'.$settings['image_style'].'" sticky_ignore="'.$settings['sticky_ignore'].'"  orderby="'.$settings['orderby'].'" order="'.$settings['order'].'" offset="'.$settings['offset'].'"  terms="'.$category.'" taxonomy_type="'.$settings['taxonomy_type'].'" ]');    
+            echo do_shortcode('[voidgrid_sc_post_grid post_type="'.$settings['post_type'].'" pagination_yes="'.$settings['pagination_yes'].'" display_type="'.$settings['display_type'].'" posts="'.$settings['posts'].'" posts_per_row="'.$settings['posts_per_row'].'" image_style="'.$settings['image_style'].'" sticky_ignore="'.$settings['sticky_ignore'].'"  orderby="'.$settings['orderby'].'" order="'.$settings['order'].'" offset="'.$settings['offset'].'"  terms="'.$category.'" taxonomy_type="'.$settings['taxonomy_type'].'" ]');    
 		echo'</div>';
 	}
 

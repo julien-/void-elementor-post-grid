@@ -3,7 +3,7 @@ Contributors: voidthemes
 Tags: page-builder, elementor, grid-builder, list-post, post-grid
 Requires at least: 4.4
 Tested up to: 4.8
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Adds post-grid element to Elementor page builder for generating post grid/list f
 == Description ==
 
 This plugin adds new element / widget to Elementor Page Builder which helps you to showcase your blog posts, custom post type with custom taxonomy in five different styles.
-You are now able to show not only your deafult posts by wordpress but also anything you create as custom post type. (excluding-meta tags/values).
+You are now able to show not only your deafult posts by wordpress but also anything you create as custom post type. (excluding-meta tags/values).Pagination will also be added so user can easily navigate through the posts.
 
 For more details :[VOID Elementor Post Grid Demo](http://voidthemes.com/void-elementor-post-grid-plugin/).
 For our other works visit : [VOID Themes](http://voidthemes.com).
@@ -39,6 +39,7 @@ Controls:
 6. Order by
 7. 3 image styles for featured images to show up
 8. Sticky control
+9.Pagination
 
 Note: This plugin is an addon of Elementor Page Builder (https://wordpress.org/plugins/elementor/) and will only work with Elementor Page Builder installed. And your elementor should be up to date to latest version
 
@@ -68,6 +69,10 @@ Our Void Elementor Post Grid adds a new section in the elementor live page build
 
 
 == Changelog ==
+= 1.0.5 = 
+pagination added
+= 1.0.4 =
+fixed js file missing
 = 1.0.3 =
 fixed js file missing
 = 1.0.3 =

@@ -106,3 +106,45 @@ function void_category_transient_flusher() {
 add_action( 'edit_category', 'void_category_transient_flusher' );
 add_action( 'save_post',     'void_category_transient_flusher' );
 
+
+// Helper Function for pagination void_post_grid
+
+function void_grid_set_offset( $query ) {
+  if( $query->get( 'void_grid_query' ) == 'yes' && !$query->is_main_query() ){
+       //$query->set( 'offset', $query->get( 'void_set_offset' ) );
+      $offset = $query->get( 'void_set_offset' );
+
+      //Next, determine how many posts per page you want (we'll use WordPress's settings)
+      $post_per_page = $query->get( 'posts_per_page' );
+
+      //Next, detect and handle pagination...
+      if ( $query->is_paged ) {
+
+        //Manually determine page query offset (offset + current page (minus one) x posts per page)
+        $page_offset = $offset + ( ($query->query_vars['paged']-1) * $post_per_page );
+
+        //Apply adjust page offset
+        $query->set('offset', $page_offset );
+
+      }
+      else {
+
+        //This is the first page. Just use the offset...
+        $query->set('offset',$offset);
+
+      }
+  }
+}
+add_action( 'pre_get_posts', 'void_grid_set_offset' );
+
+function void_grid_reset_page_number($found_posts, $query) {
+  if( $query->get( 'void_grid_query' ) == 'yes' && !$query->is_main_query() ){
+
+	$offset = $query->get( 'void_set_offset' );
+
+	return $found_posts - $offset;
+     
+  }
+  return $found_posts;
+}
+add_filter('found_posts', 'void_grid_reset_page_number', 1, 2 );

@@ -50,4 +50,3 @@ function void_grid_post_type(){
 	return $post_types;
 }
 
-

@@ -17,12 +17,13 @@ function voidgrid_sc_post_grid( $atts ) {
          'offset'           => 0,  
          'sticky_ignore'    => 0,
          'display_type'       => 'grid',
+         'pagination_yes'     => 1,
 
- 
     ), $atts ));
 
    
-    global $col_no,$count,$col_width;
+
+  global $col_no,$count,$col_width;
   
   $count = 0;         
   if ($posts_per_row==1)  { $col_width = 12; $col_no = 1; }
@@ -75,27 +76,32 @@ function voidgrid_sc_post_grid( $atts ) {
   }
  
   $templates = new Void_Template_Loader;
-  ob_start(); 
+  
 
   $grid_query= null;
 
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
 
     $args = array(
        'post_type'      => $post_type,         
        'post_status'    => 'publish',
-       'posts_per_page' => $posts,    
-       'tax_query' => $tax_query,
-       'orderby'          => $orderby,
-       'order'            => $order,   //ASC / DESC
-       'offset'           => $offset,
+       'posts_per_page' => $posts, 
+       'paged'          => $paged,   
+       'tax_query'      => $tax_query,
+       'orderby'        => $orderby,
+       'order'          => $order,   //ASC / DESC
        'ignore_sticky_posts' => $sticky_ignore,
+       'void_grid_query' => 'yes',
+       'void_set_offset' => $offset,
   );
 
 $grid_query = new WP_Query( $args );
-  global $post_count;
-  $post_count = $posts;
-?>
+
+global $post_count;
+$post_count = $posts;
+
+ob_start(); ?>
 
 <div class="content-area void-grid">
   <div class="site-main <?php echo esc_html( $display_type . ' '. $image_style); ?>" >       
@@ -104,18 +110,47 @@ $grid_query = new WP_Query( $args );
       if ( $grid_query->have_posts() ) : 
 
             /* Start the Loop */
-        while ( $grid_query->have_posts() ) : $grid_query->the_post();?>          
-          <?php
+        while ( $grid_query->have_posts() ) : $grid_query->the_post();  // Start of posts loop found posts
+          
           $count++;
           $templates->get_template_part( 'content', $display_type );
 
-        endwhile; ?>
+        endwhile; // End of posts loop found posts
 
-      <?php else :
+        if($pagination_yes==1) :  //Start of pagination condition 
+            global $wp_query;
+            $big = 999999999; // need an unlikely integer
+            $totalpages = $grid_query->max_num_pages;
+            $current = max(1, get_query_var('paged'));
+            $paginate_args = array(
+                                'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))) ,
+                                'format' => '?paged=%#%',
+                                'current' => $current,
+                                'total' => $totalpages,
+                                'show_all' => False,
+                                'end_size' => 1,
+                                'mid_size' => 3,
+                                'prev_next' => True,
+                                'prev_text' => esc_html__('« Previous') ,
+                                'next_text' => esc_html__('Next »') ,
+                                'type' => 'plain',
+                                'add_args' => False,
+                              );
+
+            $pagination = paginate_links($paginate_args); ?>
+            <div class="col-md-12">
+              <nav class='pagination wp-caption void-grid-nav'> 
+               <?php echo $pagination; ?>
+              </nav>
+            </div>
+        <?php endif; //end of pagination condition ?>
+
+
+      <?php else :   //if no posts found
 
           $templates->get_template_part( 'content', 'none' );
 
-      endif; ?>
+      endif; //end of post loop ?>  
 
     </div><!-- #main -->
   </div><!-- #primary -->
@@ -125,4 +160,6 @@ $grid_query = new WP_Query( $args );
 wp_reset_postdata();
 return ob_get_clean();
 }
+
 add_shortcode('voidgrid_sc_post_grid', 'voidgrid_sc_post_grid');
+
