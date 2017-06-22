@@ -368,7 +368,7 @@ protected function _register_controls() {
         $this->add_responsive_control(
             'te_align',
             [
-                'label' => __( 'Alignment', 'void' ),
+                'label' => __( 'Text Alignment', 'void' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
@@ -391,6 +391,58 @@ protected function _register_controls() {
                 'default' => '',
                 'selectors' => [
                     '{{WRAPPER}} .blog-excerpt p' => 'text-align: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'pagination_align',
+            [
+                'label' => __( 'Pagination Alignment', 'void' ),
+                'type' => Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => __( 'Left', 'void' ),
+                        'icon' => 'fa fa-align-left',
+                    ],
+                    'center' => [
+                        'title' => __( 'Center', 'void' ),
+                        'icon' => 'fa fa-align-center',
+                    ],
+                    'right' => [
+                        'title' => __( 'Right', 'void' ),
+                        'icon' => 'fa fa-align-right',
+                    ],
+                    'justify' => [
+                        'title' => __( 'Justified', 'void' ),
+                        'icon' => 'fa fa-align-justify',
+                    ],
+                ],
+                'default' => '',
+                'selectors' => [
+                    '{{WRAPPER}} .void-grid-nav' => 'text-align: {{VALUE}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'pagi_font_size',
+            [
+                'label' => esc_html__( 'Pagination Size', 'void' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .void-grid-nav' => 'font-size: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );

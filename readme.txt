@@ -3,7 +3,7 @@ Contributors: voidthemes
 Tags: page-builder, elementor, grid-builder, list-post, post-grid
 Requires at least: 4.4
 Tested up to: 4.8
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

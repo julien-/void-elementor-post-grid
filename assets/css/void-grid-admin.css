@@ -1,0 +1,20 @@
+/* void grid admin css */
+
+.void-grid-review{
+	background : #FFFFFF ;
+	padding : 10px;
+	margin-top : 40px;
+	margin-bottom: 10px;
+	line-height: 1.5;
+	font-size: 16px;
+	border-left: 5px solid #006799;
+	-webkit-box-shadow: 1px 1px 1px 1px #d3d3d3;
+	box-shadow: 1px 1px 1px 1px #d3d3d3;
+}
+.void-grid-review-btn{
+	padding-top: 5px;
+}
+.void-grid-review-done{
+	float: right;
+	text-decoration: none;
+}

@@ -48,6 +48,7 @@ function voidgrid_sc_post_grid( $atts ) {
     elseif( $display_type == '5'){
       $display_type = 'minimal';
     }
+    
     if( !empty( $image_style ) ){
       if( $image_style == 1){
         $image_style = '';
@@ -80,7 +81,13 @@ function voidgrid_sc_post_grid( $atts ) {
 
   $grid_query= null;
 
-$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+if ( get_query_var('paged') ) {
+    $paged = get_query_var('paged');
+} elseif ( get_query_var('page') ) { // if is static front page
+    $paged = get_query_var('page');
+} else {
+    $paged = 1;
+}
 
 
     $args = array(
@@ -121,7 +128,7 @@ ob_start(); ?>
             global $wp_query;
             $big = 999999999; // need an unlikely integer
             $totalpages = $grid_query->max_num_pages;
-            $current = max(1, get_query_var('paged'));
+            $current = max(1,$paged );
             $paginate_args = array(
                                 'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))) ,
                                 'format' => '?paged=%#%',
