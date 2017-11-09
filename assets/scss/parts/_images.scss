@@ -1,0 +1,20 @@
+/* post image */
+.post-img{
+    position:relative;
+}
+.top-left{
+    .post-img{
+        img{
+            border-top-left-radius: 75px;
+            border-bottom-right-radius: 75px;
+        }
+    }
+}
+.top-right{
+    .post-img{
+        img{
+            border-top-right-radius: 75px;
+            border-bottom-left-radius: 75px;
+        }
+    }
+}

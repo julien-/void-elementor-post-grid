@@ -30,119 +30,17 @@
         position: absolute;
     }
 
-	/* list style blog */
-	.list{
-		@include headings{
-			margin:0 ;
-		}
-		.entry-header{
-			@include ver-line();
-			overflow: hidden;
-			margin-top: 30px;
-			padding-bottom: 30px;
-			.post-info{
-				overflow: hidden;
-			}		
-		}
-		.post-navigation{
-			border-top: none;
-		}
+	@import "parts/display_list";
+	@import "parts/display_grid";
+	@import "parts/display_minimal";
 
-	}
+	@import "parts/images";
+	@import "parts/filters";
 
-	/* 1st full post list style blog */
-	.first-post-list{
-		@include headings{
-			margin:0 ;
-		}
-		.entry-header{
-			@include ver-line();
-			overflow: hidden;
-			margin-top: 30px;
-			padding-bottom: 30px;
-			&:first-child{			
-				.post-img{
-					float: none;
-				}
-				.post-info{
-					text-align: center;
-					overflow: hidden;
-				}
-			}
-		}
-		.post-navigation{
-			border-top: none;
-		}
-	}
 
-	/* grid style blog */
-	.grid{
-		.entry-header{
-			margin-top: 30px;
-		}
-	}
-	/* first post grid */
-	.first-post-grid{
-		.entry-header{
-			margin-top: 30px;
-		}	
-	}
-	/* post image */
-	.post-img{
-		position:relative;
-	}
-	.top-left{
-		.post-img{
-			img{
-				border-top-left-radius: 75px;
-				border-bottom-right-radius: 75px;	
-			}
-		}
-	}
-	.top-right{
-		.post-img{
-			img{
-				border-top-right-radius: 75px;
-				border-bottom-left-radius: 75px;	
-			}
-		}
-	}
 
-	/* minimal grid blog */
-	.minimal{
-		.tags-links{
-			display: none !important;
-		}
-		.comments-link{
-			display: none !important;
-		}
-		.cat-links{
-			margin-top: 15px;
-			//text-transform: uppercase;		
-			&::before{
-				display: none !important;
-			}
-			a{
-				color: #7cb0b9;
-				font-weight: bold;
-				font-size: 18px;
-			}
-		}
-		.entry-title{
-			margin-top: 0;
-		}
-		.moretag{
-			display: none;
-		}
-		.entry-header{
-			margin-top: 30px;
-			border:1px solid $QuarTernaryColor;
-			margin-bottom: 40px;
-		}
-		.blog-excerpt{
-			margin-top: 15px;
-		}
-	}
+
+
 	.cat-links::before{
 		@include icon("\f03a");	
 	}

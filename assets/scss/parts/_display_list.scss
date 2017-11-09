@@ -1,0 +1,44 @@
+/* list style blog */
+.list{
+    @include headings{
+        margin:0 ;
+    }
+    .entry-header{
+        @include ver-line();
+        overflow: hidden;
+        margin-top: 30px;
+        padding-bottom: 30px;
+        .post-info{
+            overflow: hidden;
+        }
+    }
+    .post-navigation{
+        border-top: none;
+    }
+
+}
+
+/* 1st full post list style blog */
+.first-post-list{
+    @include headings{
+        margin:0 ;
+    }
+    .entry-header{
+        @include ver-line();
+        overflow: hidden;
+        margin-top: 30px;
+        padding-bottom: 30px;
+        &:first-child{
+            .post-img{
+                float: none;
+            }
+            .post-info{
+                text-align: center;
+                overflow: hidden;
+            }
+        }
+    }
+    .post-navigation{
+        border-top: none;
+    }
+}

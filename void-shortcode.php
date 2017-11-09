@@ -52,7 +52,7 @@ function voidgrid_sc_post_grid( $atts ) {
 							<?php
 							if(!empty($terms_front_filters_resetall_text)):
 								?>
-                                <span class="filter_terms" data-void_elementor_ajax_filter_terms="reset_all" data-void_elementor_exclusive="<?php print $terms_front_filters_exclusive; ?>"><?php
+                                <span class="filter_terms selected" data-void_elementor_ajax_filter_terms="reset_all" data-void_elementor_exclusive="<?php print $terms_front_filters_exclusive; ?>"><?php
 									print $terms_front_filters_resetall_text; ?>
                                 </span>
 								<?php

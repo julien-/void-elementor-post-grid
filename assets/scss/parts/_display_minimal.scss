@@ -1,0 +1,35 @@
+/* minimal grid blog */
+.minimal{
+    .tags-links{
+        display: none !important;
+    }
+    .comments-link{
+        display: none !important;
+    }
+    .cat-links{
+        margin-top: 15px;
+        //text-transform: uppercase;
+        &::before{
+            display: none !important;
+        }
+        a{
+            color: #7cb0b9;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    }
+    .entry-title{
+        margin-top: 0;
+    }
+    .moretag{
+        display: none;
+    }
+    .entry-header{
+        margin-top: 30px;
+        border:1px solid $QuarTernaryColor;
+        margin-bottom: 40px;
+    }
+    .blog-excerpt{
+        margin-top: 15px;
+    }
+}
